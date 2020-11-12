@@ -27,7 +27,7 @@ public class GPanel extends JPanel {
 
 	private String title;
 	private String[] infoText;
-	private boolean showInfoText = true;
+//	private boolean showInfoText = true;
 
 	private BufferedImage imageBuffer;
 	private Graphics graphics;
@@ -101,15 +101,7 @@ public class GPanel extends JPanel {
 					last = current;
 					fps = (int) (1D / diffAvg);
 
-//					if (showInfoText)
-//						updateInfoText();
-
 					handleInput(diff);
-
-//					if (paused) {
-////						System.out.println("paused");
-//						continue;
-//					}
 
 					content.deleteDeadObjects();
 					content.handle(diff);
@@ -118,7 +110,7 @@ public class GPanel extends JPanel {
 
 					content.paint(imageBuffer, frame.getPanel());
 
-					if (showInfoText && infoText != null)
+					if (/*showInfoText && */infoText != null)
 						drawInfoText();
 
 					frame.getGraphics().drawImage(imageBuffer, 0, 0, frame);
@@ -131,70 +123,6 @@ public class GPanel extends JPanel {
 		};
 		panelThread.start();
 	}
-
-//	private void showStartInfos(double diffAvg) {
-//		handleInput(diffAvg);
-//		content.handle(diffAvg);
-//		clear();
-//		content.paint(imageBuffer, frame.getPanel());
-//
-//		BufferedImage pic_injection = new GTexture("/textures/injection.png").getBufImg();
-//		String injection_descr = "Für 8 Sekunden unverwundbar";
-//		BufferedImage pic_mask = new GTexture("/textures/mask.png").getBufImg();
-//		String mask_descr = "schnelleres Schießen + schnellere Fortbewegung";
-//
-//		freeze(300);
-//
-//		Font fontBig = new Font("Arial", 0, getHeight() / 7);
-//		Font fontSmall = new Font("Arial", 0, getHeight() / 20);
-//		FontMetrics f_metr = graphics.getFontMetrics(fontSmall);
-//
-//		String description1 = "Zerstöre mit deiner Pistole alle Viren";
-//		String description2 = "ACHTUNG: Lass dich nicht berühren";
-//		int offset = (int) (f_metr.getHeight() * 1.5);
-//
-//		int pic_size = getHeight() / 10;
-//
-//		for (int i = 4; i > 0; i--) {
-//			content.handle(diffAvg);
-//			clear();
-//			content.paint(imageBuffer, frame.getPanel());
-//
-//			graphics.setColor(new Color(0f, 0f, 0f, .4f));
-//			graphics.fillRect(0, 0, getWidth(), getHeight());
-//			graphics.drawRect(0, 0, getWidth(), getHeight());
-//
-//			graphics.setFont(fontBig);
-//			graphics.setColor(Color.YELLOW);
-//			f_metr = graphics.getFontMetrics(fontBig);
-//
-//			// Anzeige Counter
-//			graphics.drawString(Integer.toString(i), getWidth() / 2 - f_metr.stringWidth(Integer.toString(i)) / 2,
-//					getHeight() / 4 + f_metr.getHeight() / 2);
-//			graphics.setFont(fontSmall);
-//			f_metr = graphics.getFontMetrics(fontSmall);
-//			graphics.drawString(description1, getWidth() / 2 - f_metr.stringWidth(description1) / 2,
-//					getHeight() / 4 + f_metr.getHeight() / 2 + offset * 2);
-//			graphics.drawString(description2, getWidth() / 2 - f_metr.stringWidth(description2) / 2,
-//					getHeight() / 4 + f_metr.getHeight() / 2 + offset * 3);
-//
-//			// Erkl�rung Buffs
-//			graphics.drawImage(pic_injection, getWidth() / 5, getHeight() / 4 + f_metr.getHeight() / 2 + offset * 4,
-//					pic_size, pic_size, null);
-//			graphics.drawString(injection_descr, getWidth() / 4 + 30,
-//					(int) (getHeight() / 4 + f_metr.getHeight() * 1.5 + offset * 4));
-//
-//			graphics.drawImage(pic_mask, getWidth() / 5, getHeight() / 4 + f_metr.getHeight() + offset * 5, pic_size,
-//					pic_size, null);
-//			graphics.drawString(mask_descr, getWidth() / 4 + 30,
-//					(int) (getHeight() / 4 + f_metr.getHeight() * 2 + offset * 5));
-//
-//			frame.getGraphics().drawImage(imageBuffer, 0, 0, frame);
-//			freeze(1000);
-//
-//		}
-//
-//	}
 
 	/*
 	 * freeze Frame content
@@ -229,7 +157,7 @@ public class GPanel extends JPanel {
 					}
 				}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		if (input.getMouseClicks().size() > 0)
@@ -273,76 +201,6 @@ public class GPanel extends JPanel {
 			}
 		}
 	}
-
-//	private void drawGameOverText() {
-//		Graphics graphics = imageBuffer.getGraphics();
-//		Font font = new Font("Arial", 0, getHeight() / 10);
-//		FontMetrics f_metr = graphics.getFontMetrics(font);
-//
-//		String s_gameOver = "GAME OVER";
-//		String s_points = "Punkte: " + content.getPunkte();
-//
-//		graphics.setFont(font);
-//		graphics.setColor(Color.WHITE);
-//		graphics.drawString(s_gameOver, (getWidth() - f_metr.stringWidth(s_gameOver)) / 2,
-//				(getHeight() - f_metr.getHeight()) / 2);
-//
-//		font = new Font("Arial", 0, getHeight() / 15);
-//		f_metr = graphics.getFontMetrics(font);
-//
-//		graphics.setFont(font);
-//		graphics.drawString(s_points, (getWidth() - f_metr.stringWidth(s_points)) / 2,
-//				(getHeight() - f_metr.getHeight()) / 2 + getHeight() / 8);
-//
-//	}
-
-//	private void drawGameStats() {
-//		Graphics graphics = imageBuffer.getGraphics();
-//		graphics.setFont(new Font("Arial", 0, getHeight() / 30));
-//		graphics.setColor(Color.LIGHT_GRAY);
-//		int offset = getHeight() / 10;
-//		String sGameState = "";
-//		for (String key : gameStats.keySet()) {
-//			try {
-//				if (key.toLowerCase().equals("leben")) {
-//					Image pic_ui = new GTexture("/ui/heart.png").getImage();
-//					graphics.drawImage(pic_ui, getWidth() - getWidth() / 8, offset - (pic_ui.getHeight(null) / 2),
-//							getHeight() / 30, getHeight() / 30, null);
-//				} else if (key.toLowerCase().equals("punkte")) {
-//					Image pic_ui = new GTexture("/ui/star.png").getImage();
-//					graphics.drawImage(pic_ui, getWidth() - getWidth() / 8, offset - (pic_ui.getHeight(null) / 2),
-//							getHeight() / 30, getHeight() / 30, null);
-//				}
-//				if (gameStats.get(key) != null) {
-//					sGameState = gameStats.get(key);
-//				}
-//				graphics.drawString(sGameState, getWidth() - getWidth() / 11, offset + getHeight() / 70);
-//
-//				offset += getHeight() / 15;
-//				System.out.println(sGameState);
-//
-//			} catch (NullPointerException e) {
-//				e.printStackTrace();
-//			}
-//
-//		}
-//		int buffTimeWidth;
-//		if (content.getActivePowerBuffTime() > 0) {
-//			buffTimeWidth = (int) (content.getActivePowerBuffTime() / 50);
-//			graphics.setColor(Color.BLUE);
-//			graphics.fillRect(getWidth() - getWidth() / 15 - buffTimeWidth, offset, buffTimeWidth, 10);
-//			graphics.drawRect(getWidth() - getWidth() / 15 - buffTimeWidth, offset, buffTimeWidth, 10);
-//			offset += getHeight() / 15;
-//		}
-//
-//		if (content.getActiveImmunBuffTime() > 0) {
-//			buffTimeWidth = (int) (content.getActiveImmunBuffTime() / 50);
-//			graphics.setColor(Color.PINK);
-//			graphics.fillRect(getWidth() - getWidth() / 15 - buffTimeWidth, offset, buffTimeWidth, 10);
-//			graphics.drawRect(getWidth() - getWidth() / 15 - buffTimeWidth, offset, buffTimeWidth, 10);
-//		}
-//
-//	}
 
 	public void pause() {
 		try {

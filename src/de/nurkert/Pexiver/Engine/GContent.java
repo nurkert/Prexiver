@@ -21,7 +21,7 @@ public abstract class GContent {
 
 	ArrayList<GObject> objects;
 	GLocation viewCenter;
-	boolean shouldSort, freezed;
+	boolean shouldSort;
 	GFreezeReason freezeReason;
 
 	CollisionDetection collisions;
@@ -31,7 +31,6 @@ public abstract class GContent {
 		viewCenter = new GLocation(0, 0, null);
 		shouldSort = true;
 		collisions = new CollisionDetection();
-		freezed = true;
 		freezeReason = GFreezeReason.START;
 	}
 
@@ -46,30 +45,11 @@ public abstract class GContent {
 
 		for (int i = 0; i < objects.size(); i++) {
 			GObject object = objects.get(i);
-			if (object != null && (!freezed || object.isFreezeImmune()))
+			if (object != null)
 				object.handle(diff / 2, this);
 		}
 
-		if (!freezed)
-			collisions.detect(objects);
-	}
-
-	public boolean isFreezed() {
-		return freezed;
-	}
-
-	public void freeze(GFreezeReason reason) {
-		freezed = true;
-		freezeReason = reason;
-	}
-	
-	public void unfreeze() {
-		freezed = false;
-		freezeReason = null;
-	}
-
-	public GFreezeReason getFreezeReason() {
-		return freezeReason;
+		collisions.detect(objects);
 	}
 	
 	public ArrayList<GObject> getObjects() {

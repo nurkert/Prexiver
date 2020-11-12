@@ -9,6 +9,8 @@ import de.nurkert.Pexiver.Engine.Events.Essential.HandleObjectsEvent;
 import de.nurkert.Pexiver.Engine.Front.GTexture;
 import de.nurkert.Pexiver.Game.World;
 import de.nurkert.Pexiver.Game.Entitys.Player;
+import de.nurkert.Pexiver.Game.PlayerMagic.MagicForceField;
+import de.nurkert.Pexiver.Game.PlayerMagic.MagicSinusWave;
 
 public class Main implements GEventListener  {
 
@@ -29,6 +31,8 @@ public class Main implements GEventListener  {
 				frame.setBackground(new GTexture("/textures/background.png"));	
 
 				player = new Player(new GLocation(0, 0, world), frame.getPanel().getContent().getViewCenter());
+				player.learn(new MagicForceField(), new MagicSinusWave());
+				
 				world.setPlayer(player);
 				world.place(player);
 

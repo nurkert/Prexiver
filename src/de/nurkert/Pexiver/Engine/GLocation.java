@@ -21,8 +21,8 @@ public class GLocation {
 		this.x = x;
 		this.y = y;
 		this.angle = 0F;
+		applyRandomAngle();
 		this.world = world;
-		angle = (float) (new Random().nextFloat() * 2 * Math.PI);
 	}
 
 	public double getX() {
@@ -63,6 +63,10 @@ public class GLocation {
 		return this;
 	}
 
+	public void applyRandomAngle() {
+		angle = (float) (new Random().nextFloat() * 2 * Math.PI);
+	}
+	
 	public void addAnlge(float angle) {
 		this.angle += angle;
 		fixAngle();
@@ -103,6 +107,8 @@ public class GLocation {
 	}
 
 	public GLocation copy() {
-		return new GLocation(x, y, world);
+		GLocation copy = new GLocation(x, y, world);
+		copy.setAngle(angle);
+		return copy;
 	}
 }
