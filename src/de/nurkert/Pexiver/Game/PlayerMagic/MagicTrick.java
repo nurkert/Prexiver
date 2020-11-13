@@ -14,7 +14,7 @@ public abstract class MagicTrick {
 		this.bindedKeyCode = bindedKeyCode;
 		random = new Random();
 	}
-	
+	//okö
 	public int getBindedKeyCode() {
 		return bindedKeyCode;
 	}

@@ -38,5 +38,6 @@ public class MagicSinusWave extends MagicTrick {
 		location.getWorld().place(new GParticle(location.getAngle() < 0 ? GLayor.MAIN1 : GLayor.OVERLAY1,
 				getMagicColor(), loc, new Random().nextInt(10) + 15, new Random().nextInt(250) + 500));
 
+		//okö
 	}
 }

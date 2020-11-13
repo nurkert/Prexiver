@@ -16,6 +16,8 @@ public class MagicForceField extends MagicTrick {
 	public void perform(GLocation location) {
 		for (int i = 0; i < 5; i++) {
 			GLocation loc = location.copy();
+			
+			//okö
 			loc.applyRandomAngle();
 			
 			double radius = random.nextDouble()  + 10;
