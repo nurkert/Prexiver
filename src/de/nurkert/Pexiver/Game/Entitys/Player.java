@@ -150,7 +150,7 @@ public class Player extends GPlayer {
 	public void collide(GObject object) {
 		super.collide(object);
 		GLocation loc = getLocation().copy();
-
+		
 		double addX = new Velocity(loc.getAngle(), 8).getX();
 		double addY = new Velocity(loc.getAngle(), 8).getY();
 		loc.addX(addX);
