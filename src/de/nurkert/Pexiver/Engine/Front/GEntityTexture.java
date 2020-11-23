@@ -19,9 +19,7 @@ public class GEntityTexture extends GTexture {
 	protected Image[] frames;
 
 	private void init() {
-//		System.out.println(img.getHeight() + "/" + img.getWidth());
 		int max =  img.getWidth() / img.getHeight();
-//		System.out.println("mac: " + max);
 		frames = new Image[max];
 		for (int i = 0; i < max; i++) {
 			frames[i] = img.getSubimage(img.getHeight() * i , 0, img.getHeight(), img.getHeight());

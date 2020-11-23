@@ -85,31 +85,6 @@ public abstract class GObject {
 		image.getGraphics().drawImage(_texture, x, y, width, height, null);
 	}
 
-//
-//	public static BufferedImage toBufferedImage(Image img) {
-//		if (img == null)
-//			return null;
-//		else if (img instanceof BufferedImage) {
-//			return (BufferedImage) img;
-//		}
-//
-//		if(img.getWidth(null) < 0 || img.getHeight(null) < 0)
-//			return null;
-//		
-//		// Create a buffered image with transparency
-//		
-//		
-//		BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-//
-//		// Draw the image on to the buffered image
-//		Graphics2D bGr = bimage.createGraphics();
-//		bGr.drawImage(img, 0, 0, null);
-//		bGr.dispose();
-//
-//		// Return the buffered image
-//		return bimage;
-//	}
-
 	public interface Collidable {
 
 		public void collide(GObject object);
@@ -127,10 +102,6 @@ public abstract class GObject {
 		this.fieldID = fieldID;
 	}
 
-//	public boolean isCollidAble() {
-//		return collidAble;
-//	}
-
 	public boolean isMoveing() {
 		return moving;
 	}
@@ -146,8 +117,7 @@ public abstract class GObject {
 	public void setLocation(GLocation location) {
 		this.location = location;
 	}
-
-//	just an alias xD
+	
 	public void teleport(GLocation location) {
 		setLocation(location);
 	}

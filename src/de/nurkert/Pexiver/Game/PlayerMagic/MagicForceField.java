@@ -16,23 +16,22 @@ public class MagicForceField extends MagicTrick {
 	public void perform(GLocation location) {
 		for (int i = 0; i < 5; i++) {
 			GLocation loc = location.copy();
-			
-			//okö
+
 			loc.applyRandomAngle();
 			
 			double radius = random.nextDouble()  + 10;
-			double addX = new Velocity(loc.getAngle(), radius).getX();
-			double addY = new Velocity(loc.getAngle(), radius).getY();
-			loc.addX(addX);
-			loc.addY(addY);
+			
+			double deltaX = new Velocity(loc.getAngle(), radius).getX();
+			double deltaY = new Velocity(loc.getAngle(), radius).getY();
+			loc.addX(deltaX);
+			loc.addY(deltaY);
 
 			loc.addAnlge((float) (Math.PI / 1.5));
+			
 			new Velocity();
 			location.getWorld().place(
-					new GParticle(getMagicColor(), loc, new Random().nextInt(4) + 3, new Random().nextInt(1300) + 500));
-
+					new GParticle(getMagicColor(), loc, new Random().nextInt(4) + 3,
+							new Random().nextInt(1300) + 500));
 		}
-
 	}
-
 }

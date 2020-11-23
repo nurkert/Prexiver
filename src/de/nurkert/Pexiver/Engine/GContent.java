@@ -7,7 +7,6 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.nurkert.Pexiver.Engine.Back.CollisionDetection;
 import de.nurkert.Pexiver.Engine.Entitys.GEntity;
 import de.nurkert.Pexiver.Engine.Entitys.GObject;
 import de.nurkert.Pexiver.Engine.Entitys.GObject.GObjectOrganizer;
@@ -24,13 +23,10 @@ public abstract class GContent {
 	boolean shouldSort;
 	GFreezeReason freezeReason;
 
-	CollisionDetection collisions;
-
 	public GContent() {
 		objects = new ArrayList<GObject>();
 		viewCenter = new GLocation(0, 0, null);
 		shouldSort = true;
-		collisions = new CollisionDetection();
 		freezeReason = GFreezeReason.START;
 	}
 
@@ -48,8 +44,6 @@ public abstract class GContent {
 			if (object != null)
 				object.handle(diff / 2, this);
 		}
-
-		collisions.detect(objects);
 	}
 	
 	public ArrayList<GObject> getObjects() {
