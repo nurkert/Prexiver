@@ -21,13 +21,11 @@ public abstract class GContent {
 	ArrayList<GObject> objects;
 	GLocation viewCenter;
 	boolean shouldSort;
-	GFreezeReason freezeReason;
 
 	public GContent() {
 		objects = new ArrayList<GObject>();
 		viewCenter = new GLocation(0, 0, null);
 		shouldSort = true;
-		freezeReason = GFreezeReason.START;
 	}
 
 	public void handle(double diff) {
@@ -48,10 +46,6 @@ public abstract class GContent {
 	
 	public ArrayList<GObject> getObjects() {
 		return objects;
-	}
-
-	public static enum GFreezeReason {
-		START, PAUSED, GAMEOVER;
 	}
 
 	public void deleteDeadObjects() {
