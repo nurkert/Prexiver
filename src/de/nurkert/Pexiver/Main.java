@@ -24,7 +24,7 @@ public class Main implements GEventListener  {
 		Thread mainThread = new Thread("mainThread") {
 			public void run() {
 
-				frame = new GFrame("ImmuneTillDeath");
+				frame = new GFrame("Prexiver");
 				world = new World();
 				EventHandler.register(world);
 				frame.setContent(world);
